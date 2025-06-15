@@ -1,0 +1,100 @@
+
+# Tema 2
+
+Punctul de intrare al programului se afla in fisierul main.c.
+Intr-o bucla se citeste cate un caracter si se apeleaza comanda corespunzatoare
+
+## Comenzi
+### Incarcarea unei matrice
+Aloca memorie pentru matrice si citeste datele de la tastatura.
+In cazul in care colectia este plina, se aloca mai mult spatiu.
+
+### Determinarea dimensiunilor
+Afiseaza datele din campurile "lines" si "columns" ale matricii.
+
+### Afisarea unei matrice
+Afiseaza datele din campul "data" al matricei.
+
+### Redimensionarea unei matrice
+Citeste de la tastatura 2 vectori care contin indecsii noilor linii si coloane.
+Se creeaza o noua matrice in care se copiaza elemente din matricea initiala.
+Matricea noua se adauga in colectie in locul celei initiale.
+Matricea initiala se elibereaza din memorie.
+
+### Inmultirea a doua matrice
+Se aloca o noua matrice care va contine rezultatul.
+Inmultirea se face folosind algoritmul cu n^3 operatii.
+Matricea rezultat se introduce in colectie pe ultima pozitie.
+
+### Sortarea matricelor
+Se calculeaza suma elementelor fiecarei matrice si se stocheaza in campul "sum"
+Se sorteaza folosind functia "qsort".
+Functia de comparare folosita tine cont de campul "sum" al matricelor.
+
+### Transpunerea
+Se aloca memorie pentru noua matrice si se copiaza datele.
+Vechea matrice este eliberata din memorie si inlocuita cu cea noua.
+
+### Ridicarea la putere
+S-a folosit algoritmul iterativ prezentat [aici](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
+Matricele "aux2" sunt folosite pentru a stoca rezultate intermediare.
+
+### Eliberarea memoriei unei matrice
+Se elibereaza memoria ocupata de date, apoi de matricea in sine.
+Dupa eliberare se shifteaza celelalte matrici din colectie la stanga.
+In cazul in care colectia e jumatate goala, se elibereaza jumatate din memorie.
+
+### Eliberarea tuturor resurselor
+Se itereaza prin toata colectia si se elibereaza matricele.
+Se elibereaza apoi memoria folosita de colectie.
+Apoi executia programului se opreste.
+
+### Inmultirea folosind algoritmul Strassen
+S-a folosit algoritmul prezentat [aici](https://docs.google.com/document/d/13f1nWnX2NhBt1VxyeUUxH01XMvRV3JwKgkhxWMBIByc/edit).
+Sunt refolosite mai multe functii implementate pentru celelalte comenzi.
+La fiecare pas recursiv se elibereaza memoria care nu va mai fi necesara.
+
+## Module folosite
+### matrix
+Modulul matrix defineste un obiect de tipul matrice si functii ajutatoare
+
+Structura "matrix":
+- lines -> numarul de linii
+- columns -> numarul de coloane
+- data -> elementele matricei
+- sum -> suma elementelor matricei (completata doar in momentul sortarii)
+
+Functii:
+- alloc_matrix -> aloca memorie pentru o noua matrice
+- resize_matrix -> redimensioneaza matricea
+- add_matrix -> adunarea a 2 matrice
+- sub_matrix -> diferenta a 2 matrice
+- mul_matrix -> inmultirea a 2 matrice (algoritmul cu n^3 operatii)
+- mul_matrix_strassen -> inmultirea a 2 matrice prin algoritmul Strassen
+- compute_matrix_sum -> populeaza campul sum al matricei
+- free_matrix -> elibereaza toata memoria ocupata de matrice
+
+### matrix_pool
+Modulul matrix_pool defineste o colectie de matrice si functii ajutatoare:
+
+Structura "matrix_pool": 
+- size -> dimensiunea alocata pentru colectia de matrice
+- count -> numarul de matrice stocate in colectie
+- v -> vectorul de matrice
+
+Functii:
+- init_matrix_pool -> initializeaza colectia de matrice
+- insert_matrix -> adauga o noua matrice in colectie
+- remove_matrix -> sterge o matrice din colectie
+
+### utils
+Modulul utils defineste functii ajutatoare folosite in mai multe zone din cod:
+- alloc_1d_array -> aloca un vector unidimensional
+- alloc_2d_array -> aloca un vector bidimensional
+- read_1d_array -> citeste de la tastatura un vector unidimensional
+- read_2d_array -> citeste de la tastatura un vector bidimensional
+- free_1d_array -> elibereaza memoria ocupata de un vector unidimensional
+- free_2d_array -> elibereaza memoria ocupata de un vector bidimensional
+- print_1d_array -> afiseaza un vector unidimensional
+- print_2d_array -> afiseaza un vector bidimensional
+- apply_modulo -> aplica modulo 10007 pe un numar
